@@ -14,4 +14,4 @@
 
 Chrome开启跨域.
 
-Safari停止跨域限制.
+Safari停止跨源限制.
