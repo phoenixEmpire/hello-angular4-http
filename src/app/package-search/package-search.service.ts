@@ -54,4 +54,8 @@ export class PackageSearchService {
             })
         );
     }
+    testCurring = (aa = 'aaa') => (bb = 'bbb', cc = 'ccc') => this.test(aa, bb, cc);
+    test(a: string, b: string, c: string) {
+        console.log(a, b, c);
+    }
 }
