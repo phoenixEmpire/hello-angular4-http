@@ -7,6 +7,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BasicUsageComponent } from './basic-usage/basic-usage.component';
 import { PackageSearchComponent } from './package-search/package-search.component';
+import { HttpErrorHandlerService } from './http-error-handler.service';
+import { MessageService } from './messages/message.service';
 
 const routes: Routes = [
   { path: 'basic-usage', component: BasicUsageComponent },
@@ -24,7 +26,10 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    MessageService,
+    HttpErrorHandlerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

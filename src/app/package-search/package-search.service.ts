@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpErrorHandlerService } from '../http-error-handler.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { map } from 'rxjs/operators/map';
+import { catchError } from 'rxjs/operators/catchError';
 
 export interface NpmPackage {
     name: string;
@@ -27,6 +29,7 @@ function createHttpOptions(packageName: string, refresh = false) {
             q: packageName
         }
     });
+    // 自定义的x-refresh头
     const headerMap = refresh ? { 'x-refresh': 'true' } : {};
     const headers = new HttpHeaders(headerMap);
     return { headers, params }; // 解构赋值创建对象
@@ -36,8 +39,11 @@ function createHttpOptions(packageName: string, refresh = false) {
 export class PackageSearchService {
     private errorHandler;
     constructor(
-        private http: HttpClient
-    ) { }
+        private http: HttpClient,
+        private errorHandlerService: HttpErrorHandlerService
+    ) {
+        this.errorHandler = this.errorHandlerService.creatHandleError('npm package search service');
+    }
     search(packageName: string, refresh = false): Observable<NpmPackage[]> {
         // clear if no pkg name
         if (!packageName.trim()) {
@@ -51,11 +57,8 @@ export class PackageSearchService {
                     version: entry.version[0],
                     description: entry.description[0]
                 } as NpmPackage));
-            })
+            }),
+            catchError(this.errorHandler('search', []))
         );
-    }
-    testCurring = (aa = 'aaa') => (bb = 'bbb', cc = 'ccc') => this.test(aa, bb, cc);
-    test(a: string, b: string, c: string) {
-        console.log(a, b, c);
     }
 }
