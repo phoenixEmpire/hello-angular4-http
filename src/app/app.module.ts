@@ -9,6 +9,8 @@ import { BasicUsageComponent } from './basic-usage/basic-usage.component';
 import { PackageSearchComponent } from './package-search/package-search.component';
 import { HttpErrorHandlerService } from './http-error-handler.service';
 import { MessageService } from './messages/message.service';
+import { AuthService } from './auth.service';
+import { httpInterceptorProviders } from './http-interceptors/index';
 
 const routes: Routes = [
   { path: 'basic-usage', component: BasicUsageComponent },
@@ -28,7 +30,9 @@ const routes: Routes = [
   ],
   providers: [
     MessageService,
-    HttpErrorHandlerService
+    HttpErrorHandlerService,
+    AuthService,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
