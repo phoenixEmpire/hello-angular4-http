@@ -11,17 +11,21 @@ import { HttpErrorHandlerService } from './http-error-handler.service';
 import { MessageService } from './messages/message.service';
 import { AuthService } from './auth.service';
 import { httpInterceptorProviders } from './http-interceptors/index';
+import { MessagesComponent } from './messages/messages.component';
+import { RequestCache, RequestCacheWithMap } from './request-cache.service';
 
 const routes: Routes = [
   { path: 'basic-usage', component: BasicUsageComponent },
-  { path: 'package-search', component: PackageSearchComponent }
+  { path: 'package-search', component: PackageSearchComponent },
+  { path: 'messages', component: MessagesComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     BasicUsageComponent,
-    PackageSearchComponent
+    PackageSearchComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,7 @@ const routes: Routes = [
     MessageService,
     HttpErrorHandlerService,
     AuthService,
+    { provide: RequestCache, useClass: RequestCacheWithMap },
     httpInterceptorProviders
   ],
   bootstrap: [AppComponent]

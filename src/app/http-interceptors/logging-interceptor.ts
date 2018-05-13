@@ -4,6 +4,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, Htt
 import { MessageService } from '../messages/message.service';
 import { Observable } from 'rxjs/Observable';
 
+// 日志拦截器：向MessageService里添加消息
 @Injectable()
 export class LoggingInterceptor implements HttpInterceptor {
     constructor(private messageService: MessageService) { }
