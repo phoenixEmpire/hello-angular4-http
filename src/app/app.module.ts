@@ -13,10 +13,12 @@ import { AuthService } from './auth.service';
 import { httpInterceptorProviders } from './http-interceptors/index';
 import { MessagesComponent } from './messages/messages.component';
 import { RequestCache, RequestCacheWithMap } from './request-cache.service';
+import { UploadComponent } from './upload/upload.component';
 
 const routes: Routes = [
   { path: 'basic-usage', component: BasicUsageComponent },
   { path: 'package-search', component: PackageSearchComponent },
+  { path: 'upload', component: UploadComponent },
   { path: 'messages', component: MessagesComponent }
 ];
 
@@ -25,6 +27,7 @@ const routes: Routes = [
     AppComponent,
     BasicUsageComponent,
     PackageSearchComponent,
+    UploadComponent,
     MessagesComponent
   ],
   imports: [
