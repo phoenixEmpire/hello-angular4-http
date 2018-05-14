@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 
 // NOOP = No Operation 空操作
 /*
- *
+ * HttpEvent: Union type for all possible events on the response stream.
+ * type HttpEvent<T> = HttpSentEvent | HttpHeaderResponse | HttpResponse<T> | HttpProgressEvent | HttpUserEvent<T>;
  */
 @Injectable()
 export class NoopInterceptor implements HttpInterceptor {
