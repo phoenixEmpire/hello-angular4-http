@@ -3,6 +3,9 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 import { Observable } from 'rxjs/Observable';
 
 // NOOP = No Operation 空操作
+/*
+ *
+ */
 @Injectable()
 export class NoopInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
